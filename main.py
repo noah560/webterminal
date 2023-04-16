@@ -4,12 +4,12 @@ from subprocess import run as bash
 
 app = Flask(__name__)
 
-@app.route("/com/")
+@app.route("/")
 def run():
-    com = request.args.get("com")
+    com = request.args.get("c")
     if easygui.boolbox("Does this website have permission to run: " + com, "permission", ["Yes", "No"]):
-        bash(com)
+        bash(com.split(" "))
     return "<script>window.close();</script>"
 
 
-app.run(host='0.0.0.0')
+app.run(host='0.0.0.0', port=9219)
